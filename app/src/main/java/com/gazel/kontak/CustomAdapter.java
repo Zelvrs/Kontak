@@ -16,6 +16,12 @@ public class CustomAdapter extends ArrayAdapter {
     private int mResource;
     private Contact[] mContacts;
 
+    private  static  class  ViewHolder {
+        ImageView ivAvatar;
+        TextView tvName;
+        TextView tvAddress;
+    }
+
 
     public CustomAdapter(@NonNull Context context, int resource, @NonNull Contact[] contacts) {
         super(context, resource, contacts);
@@ -30,16 +36,27 @@ public class CustomAdapter extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
 
-        convertView = layoutInflater.inflate(mResource,parent,false);
+        ViewHolder viewHolder = new ViewHolder();
+
+        if (convertView == null) {
+            convertView = layoutInflater.inflate(mResource, parent, false);
+
+
+            viewHolder.ivAvatar = convertView.findViewById(R.id.ivAvatar);
+            viewHolder.tvName = convertView.findViewById(R.id.tvName);
+            viewHolder.tvAddress = convertView.findViewById(R.id.tvAddress);
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
 
         Contact contact = mContacts[position];
-        ImageView ivAvatar = convertView.findViewById(R.id.ivAvatar);
-        TextView tvName = convertView.findViewById(R.id.tvName);
-        TextView tvAddress = convertView.findViewById(R.id.tvAddress);
 
-        ivAvatar.setImageResource(contact.getAvatar());
-        tvName.setText(contact.getName());
-        tvAddress.setText(contact.getAddress());
+
+        viewHolder.ivAvatar.setImageResource(contact.getAvatar());
+        viewHolder.tvName.setText(contact.getName());
+        viewHolder.tvAddress.setText(contact.getAddress());
 
         return convertView;
     }
