@@ -11,13 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class custom_adapter extends ArrayAdapter {
+public class CustomAdapter extends ArrayAdapter {
     private Context mContext;
     private int mResource;
     private Contact[] mContacts;
 
 
-    public custom_adapter(@NonNull Context context, int resource, @NonNull Contact[] contacts) {
+    public CustomAdapter(@NonNull Context context, int resource, @NonNull Contact[] contacts) {
         super(context, resource, contacts);
 
         mContext = context;

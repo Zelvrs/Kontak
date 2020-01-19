@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         };
 
-        custom_adapter custom_adapter = new custom_adapter(this, R.layout.item_contact, contacts);
+        CustomAdapter customAdapter = new CustomAdapter(this, R.layout.item_contact, contacts);
 
-        listView.setAdapter(custom_adapter);
+        listView.setAdapter(customAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
